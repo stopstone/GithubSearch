@@ -2,4 +2,5 @@
     <string name="app_name">GithubSearchPractice</string>
     <string name="navigation_search_label">검색</string>
     <string name="navigation_favorite_label">좋아요</string>
+    <string name="label_search_github_user">Search Github User</string>
 </resources>
