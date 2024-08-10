@@ -1,6 +1,7 @@
 package com.stopstone.githubsearchpractice.data.repository
 
 import com.stopstone.githubsearchpractice.data.remote.api.GithubApiService
+import com.stopstone.githubsearchpractice.domain.repository.FavoriteRepository
 import com.stopstone.githubsearchpractice.domain.repository.GithubRepository
 import dagger.Module
 import dagger.Provides
@@ -15,5 +16,11 @@ object RepositoryModule {
     @Singleton
     fun provideGithubRepository(apiService: GithubApiService): GithubRepository {
         return GithubRepositoryImpl(apiService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFavoriteRepository(favoriteRepository: FavoriteRepositoryImpl): FavoriteRepository {
+        return favoriteRepository
     }
 }

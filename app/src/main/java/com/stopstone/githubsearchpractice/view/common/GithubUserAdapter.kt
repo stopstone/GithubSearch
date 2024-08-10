@@ -1,17 +1,19 @@
-package com.stopstone.githubsearchpractice.view.adapter.common
+package com.stopstone.githubsearchpractice.view.common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.stopstone.githubsearchpractice.databinding.ItemListBinding
 import com.stopstone.githubsearchpractice.domain.model.GithubUser
 import com.stopstone.githubsearchpractice.util.loadImage
+import com.stopstone.githubsearchpractice.view.common.listener.OnFavoriteClickListener
 
-class GithubUserAdapter :
-    ListAdapter<GithubUser, GithubUserAdapter.GithubUserViewHolder>(GithubUserDiffUtilCallback()) {
+
+class GithubUserAdapter(
+    private val listener: OnFavoriteClickListener
+) : ListAdapter<GithubUser, GithubUserAdapter.GithubUserViewHolder>(GithubUserDiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubUserViewHolder {
         return GithubUserViewHolder(
@@ -20,7 +22,7 @@ class GithubUserAdapter :
                 parent,
                 false
             )
-        )
+        ) { listener.onFavoriteClick(getItem(it)) }
     }
 
     override fun onBindViewHolder(holder: GithubUserViewHolder, position: Int) {
@@ -28,13 +30,21 @@ class GithubUserAdapter :
     }
 
     class GithubUserViewHolder(
-        private val binding: ItemListBinding
+        private val binding: ItemListBinding,
+        private val onFavoriteClickListener: (index: Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(githubUser: GithubUser) {
+        init {
+            binding.btnFavorite.setOnClickListener {
+                onFavoriteClickListener(adapterPosition)
+            }
+        }
 
+        fun bind(githubUser: GithubUser) {
             with(binding) {
                 ivGithubProfileImage.loadImage(githubUser.avatarUrl)
                 tvGithubProfileName.text = githubUser.login
+                tvGithubProfileRating.text = githubUser.score.toString()
+                btnFavorite.isSelected = githubUser.isFavorite
             }
         }
     }

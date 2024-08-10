@@ -11,5 +11,6 @@ data class GithubSearchResponse(
 data class GithubUserDto(
     @SerializedName("id") val id: Long,
     @SerializedName("login") val login: String,
-    @SerializedName("avatar_url") val avatarUrl: String
+    @SerializedName("avatar_url") val avatarUrl: String,
+    @SerializedName("score") val score: Double = 0.0,
 )
