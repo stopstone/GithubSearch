@@ -1,4 +1,4 @@
-package com.stopstone.githubsearchpractice.domain.usecase
+package com.stopstone.githubsearchpractice.domain.usecase.search
 
 import com.stopstone.githubsearchpractice.domain.model.GithubUser
 import com.stopstone.githubsearchpractice.domain.repository.GithubRepository
