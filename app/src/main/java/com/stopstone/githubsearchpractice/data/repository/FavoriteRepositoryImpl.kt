@@ -19,7 +19,6 @@ class FavoriteRepositoryImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>,
     private val gson: Gson
 ) : FavoriteRepository {
-
     override suspend fun addFavorite(user: GithubUser) {
         dataStore.edit { preferences ->
             val currentFavorites = getFavoritesFromPreferences(preferences)

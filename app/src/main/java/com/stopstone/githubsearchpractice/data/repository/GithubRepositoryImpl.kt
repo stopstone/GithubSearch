@@ -22,6 +22,7 @@ class GithubRepositoryImpl @Inject constructor(
                 id = item.id,
                 login = item.login,
                 avatarUrl = item.avatarUrl,
+                score = item.score,
                 isFavorite = false
             )
         }

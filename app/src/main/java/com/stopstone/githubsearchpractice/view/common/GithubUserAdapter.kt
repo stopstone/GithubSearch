@@ -43,6 +43,7 @@ class GithubUserAdapter(
             with(binding) {
                 ivGithubProfileImage.loadImage(githubUser.avatarUrl)
                 tvGithubProfileName.text = githubUser.login
+                tvGithubProfileRating.text = githubUser.score.toString()
                 btnFavorite.isSelected = githubUser.isFavorite
             }
         }
